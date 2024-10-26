@@ -6,7 +6,6 @@
 /storage/*.key
 /storage/pail
 /vendor
-.env
 .env.backup
 .env.production
 .phpactor.json
@@ -20,3 +19,7 @@ yarn-error.log
 /.idea
 /.vscode
 /.zed
+/Diagramas/challenge_db_diagram_v4-1.png
+/Diagramas/challenge_db_diagram_v3.png
+/Diagramas/challenge_db_diagram_v2.png
+/Diagramas/challenge_db_diagram_v1.png
