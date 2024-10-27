@@ -261,6 +261,46 @@ class RoomController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/update-room",
+     *     tags={"Rooms"},
+     *     summary="Update a room",
+     *     description="Update a room record",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"name"},
+     *             @OA\Property(property="name", type="string"),
+     *             @OA\Property(property="hotel_id", type="integer", description="Associated hotel ID")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Room Updated",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="OK"),
+     *             @OA\Property(property="message", type="string", example="Room updated successfully"),
+     *             @OA\Property(property="data", ref="#/components/schemas/Room")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="error"),
+     *             @OA\Property(property="error", type="string", example="Bad request")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal server error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Server error message")
+     *         )
+     *     )
+     * )
+     */
     public function updateRoom(Request $request)
     {
         try {
