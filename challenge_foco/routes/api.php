@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,5 @@ Route::post('/room',[RoomController::class, 'room']);
 Route::post('/create-room',[RoomController::class, 'createRoom']);
 Route::put('/update-room',[RoomController::class, 'updateRoom']);
 Route::delete('/delete-room/{id}',[RoomController::class, 'deleteRoom']);
+
+Route::get('/status-reserve',[ReserveController::class, 'status']);
