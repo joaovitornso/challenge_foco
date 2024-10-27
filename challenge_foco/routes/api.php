@@ -19,3 +19,4 @@ Route::get('/room-by-id/{id}',[RoomController::class, 'RoomById']);
 Route::post('/room',[RoomController::class, 'room']);
 Route::post('/create-room',[RoomController::class, 'createRoom']);
 Route::put('/update-room',[RoomController::class, 'updateRoom']);
+Route::delete('/delete-room/{id}',[RoomController::class, 'deleteRoom']);
