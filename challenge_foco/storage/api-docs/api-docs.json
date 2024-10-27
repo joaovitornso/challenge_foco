@@ -388,6 +388,114 @@
                 }
             }
         },
+        "/create-reserve": {
+            "post": {
+                "tags": [
+                    "Reserves"
+                ],
+                "summary": "Create a new reserve",
+                "description": "Create a reserve record",
+                "operationId": "39a1cdb58a005432252e5256f63c4052",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "hotel_id": {
+                                        "description": "ID of associated hotel",
+                                        "type": "integer"
+                                    },
+                                    "room_id": {
+                                        "description": "ID of associated room",
+                                        "type": "integer"
+                                    },
+                                    "check_in": {
+                                        "description": "Check-in date in YYYY-MM-DD format",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "check_out": {
+                                        "description": "Check-out date in YYYY-MM-DD format",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "total": {
+                                        "description": "Total cost of the reservation",
+                                        "type": "number",
+                                        "format": "float"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Reserve created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Reserve created successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Reserve"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Bad request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Server error message"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/room/status": {
             "get": {
                 "tags": [
@@ -852,6 +960,10 @@
         {
             "name": "Hotels",
             "description": "Hotels"
+        },
+        {
+            "name": "Reserves",
+            "description": "Reserves"
         },
         {
             "name": "Rooms",

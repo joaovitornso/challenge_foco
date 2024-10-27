@@ -54,6 +54,49 @@ class ReserveController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *     path="/create-reserve",
+     *     tags={"Reserves"},
+     *     summary="Create a new reserve",
+     *     description="Create a reserve record",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"name"},
+     *             @OA\Property(property="name", type="string"),
+     *             @OA\Property(property="hotel_id", type="integer", description="ID of associated hotel"),
+     *             @OA\Property(property="room_id", type="integer", description="ID of associated room"),
+     *             @OA\Property(property="check_in", type="string", format="date", description="Check-in date in YYYY-MM-DD format"),
+     *             @OA\Property(property="check_out", type="string", format="date", description="Check-out date in YYYY-MM-DD format"),
+     *             @OA\Property(property="total", type="number", format="float", description="Total cost of the reservation"),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Reserve created",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Reserve created successfully"),
+     *             @OA\Property(property="data", ref="#/components/schemas/Reserve")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="error"),
+     *             @OA\Property(property="error", type="string", example="Bad request")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal server error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Server error message")
+     *         )
+     *     )
+     * )
+     */
     public function createReserve(Request $request)
     {
         try {
