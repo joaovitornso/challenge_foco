@@ -261,7 +261,53 @@ class RoomController extends Controller
         }
     }
 
+    public function updateRoom(Request $request)
+    {
+        try {
+            $room = Room::find($request->id);
 
+            if (!$room) {
+                return response()->json(
+                    [
+                        'status' => "error",
+                        'message' => "Room not found",
+                    ],
+                    400
+                );
+            }
+
+            $request->validate([
+                'name' => 'string|nullable',
+                'hotel_id' => 'integer|exists:hotels,id|nullable'
+            ]);
+
+            if ($request->has("name")){
+                $room->name = $request->name;
+            }
+
+            if ($request->has('hotel_id')){
+                $room->hotel_id = $request->hotel_id;
+            }
+
+            $request->save();
+            return response()->json(
+                [
+                    'status' => "OK",
+                    'message' => "Room updated successfully",
+                    'data' => $room
+                ],
+                200
+            );
+        } catch (\Exception $error) {
+            return response()->json(
+                [
+                    'error' => $error->getMessage(),
+                    'message' => "Error updating room information"
+                ],
+                500
+            );
+        }
+    }
 
 
 
