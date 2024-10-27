@@ -309,6 +309,43 @@ class RoomController extends Controller
         }
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/api/delete-room",
+     *     tags={"Rooms"},
+     *     summary="Delete a room",
+     *     description="Delete a room record",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"id"},
+     *             @OA\Property(property="id", type="integer", example=1)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Room Deleted",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="OK"),
+     *             @OA\Property(property="message", type="string", example="Room deleted successfully")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Room ID not found")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal server error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Server error")
+     *         )
+     *     )
+     * )
+    */
     public function deleteRoom(Request $request)
     {
         try {
