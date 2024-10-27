@@ -219,7 +219,45 @@ class RoomController extends Controller
         }
     }
 
-
+    /**
+     * @OA\Post(
+     *     path="/api/create-room",
+     *     tags={"Rooms"},
+     *     summary="Create a new room",
+     *     description="Create a room record",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"name"},
+     *             @OA\Property(property="name", type="string"),
+     *             @OA\Property(property="hotel_id", type="integer", description="ID of associated hotel, if any")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Room created",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Room created successfully"),
+     *             @OA\Property(property="data", ref="#/components/schemas/Room")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="error"),
+     *             @OA\Property(property="error", type="string", example="Bad request")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal server error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Server error message")
+     *         )
+     *     )
+     * )
+     */
     public function createRoom(Request $request)
     {
         try {
