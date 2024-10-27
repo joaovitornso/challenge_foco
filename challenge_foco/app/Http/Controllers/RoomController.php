@@ -87,5 +87,38 @@ class RoomController extends Controller
         }
     }
 
+    public function roomById(Request $request) #POST
+    {
+        try{
+            $room = Room::find($request->id);
+            if($room){
+                return response()->json(
+                    [
+                        'status' => "OK",
+                        'message' => "Room found successfully",
+                        'data' => $room
+                    ],
+                    200
+                );
+            } else {
+                return response()->json(
+                    [
+                        'status' => "error",
+                        'message' => "Room not found",
+                    ],
+                    400
+                );
+            }
+        } catch(\Exception $error) {
+            return response()->json(
+                [
+                    "error" => $error->getMessage(),
+                    'message' => "Something went wrong while trying to retrieve the room"
+                ],
+                500
+            );
+        }
+    }
+
 
 }
