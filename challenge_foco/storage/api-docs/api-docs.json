@@ -1,0 +1,237 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "L5 OpenApi",
+        "description": "L5 Swagger OpenApi description",
+        "contact": {
+            "email": "darius@matulionis.lt"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api/"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Home page",
+                "operationId": "58658e34a5c8bd71c4a0afed6de10d20",
+                "responses": {
+                    "default": {
+                        "description": "Welcome page"
+                    }
+                }
+            }
+        },
+        "/api/status": {
+            "get": {
+                "tags": [
+                    "Status"
+                ],
+                "summary": "Display API status",
+                "description": "Get the current status of the API",
+                "operationId": "80340712cc66cea9f8b08285dbabb2a5",
+                "responses": {
+                    "200": {
+                        "description": "API is running"
+                    }
+                }
+            }
+        },
+        "/api/hotels": {
+            "get": {
+                "tags": [
+                    "Hotels"
+                ],
+                "summary": "Get a list of hotels",
+                "description": "Retrieve all hotels with pagination",
+                "operationId": "7657137696633cc7a84418719b55d831",
+                "responses": {
+                    "200": {
+                        "description": "List of hotels"
+                    }
+                }
+            }
+        },
+        "/api/hotel-by-id/{id}": {
+            "get": {
+                "tags": [
+                    "Hotels"
+                ],
+                "summary": "Get hotel by ID, GET Method",
+                "description": "Retrieve a hotel by its ID",
+                "operationId": "a690f37a39c875d6c4ce681b0b4dd30f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Hotel ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Hotel data"
+                    },
+                    "404": {
+                        "description": "Hotel not found"
+                    }
+                }
+            }
+        },
+        "/api/hotel": {
+            "post": {
+                "tags": [
+                    "Hotels"
+                ],
+                "summary": "Get hotel by ID, POST method",
+                "description": "Retrieve a hotel record using the hotel ID",
+                "operationId": "a2d35dc6b9a96de3127524a6cdde72bf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Hotel ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Hotel found"
+                    },
+                    "404": {
+                        "description": "Hotel not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/create-hotel": {
+            "post": {
+                "tags": [
+                    "Hotels"
+                ],
+                "summary": "Create a new hotel",
+                "description": "Create a hotel record",
+                "operationId": "9ba193fa5bc28dc7b477547dba6dd453",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Hotel created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Hotel"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Bad request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Server error message"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Hotel": {
+                "description": "Hotel model",
+                "properties": {
+                    "id": {
+                        "description": "Hotel ID",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Hotel's name",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Status",
+            "description": "Status"
+        },
+        {
+            "name": "Hotels",
+            "description": "Hotels"
+        }
+    ]
+}
