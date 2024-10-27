@@ -102,7 +102,7 @@ class HotelController extends Controller
         );
     }
 
-   /**
+    /**
      * @OA\Post(
      *     path="/api/hotel",
      *     tags={"Hotels"},
@@ -163,7 +163,6 @@ class HotelController extends Controller
             );
         }
     }
-
 
     /**
      * @OA\Post(
@@ -226,6 +225,41 @@ class HotelController extends Controller
                 400);
         }
     }
+
+    public function updateHotel(Request $request)
+    {
+        try {
+            $hotel = Hotel::find($request->id);
+            $hotel->name = $request->name;
+            $request->save();
+            if ($hotel) {
+                return response()->json(
+                    [
+                        'status' => "OK",
+                        'message' => "success",
+                        'data' => $hotel
+                    ],
+                    200
+                );
+            } else {
+                return response()->json(
+                    [
+                        'status' => "error",
+                        'message' => "Hotel ID is required",
+                    ],
+                    404
+                );
+            }
+        } catch (\Exception $error) {
+            return response()->json(
+                [
+                    'error' => $error->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
 }
 
 
