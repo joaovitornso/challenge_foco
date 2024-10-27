@@ -144,6 +144,43 @@ class RoomController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/room",
+     *     tags={"Rooms"},
+     *     summary="Get room by ID, POST method",
+     *     description="Retrieve a room record using the room ID",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="query",
+     *         description="Room ID",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      @OA\Parameter(
+     *         name="hotel_id",
+     *         in="query",
+     *         description="Hotel ID to which the room belongs",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Room found",
+     *
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Room not found",
+     *
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal server error",
+     *
+     *     )
+     * )
+     */
     public function room(Request $request) #POST
     {
         try {
