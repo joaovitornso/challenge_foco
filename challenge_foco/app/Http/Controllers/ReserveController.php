@@ -23,7 +23,7 @@ class ReserveController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/reserve/status",
+     *     path="/reserve/status",
      *     tags={"Status"},
      *     summary="Display API status",
      *     description="Get the current status of the API",
