@@ -23,3 +23,4 @@ Route::put('/update-room',[RoomController::class, 'updateRoom']);
 Route::delete('/delete-room/{id}',[RoomController::class, 'deleteRoom']);
 
 Route::get('/reserve/status',[ReserveController::class, 'status']);
+Route::post('/create-reserve',[RoomController::class, 'createReserve']);

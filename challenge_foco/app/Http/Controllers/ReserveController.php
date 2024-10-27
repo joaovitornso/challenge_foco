@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reserve;
 use Illuminate\Http\Request;
 
 /**
@@ -49,6 +50,55 @@ class ReserveController extends Controller
                     "message" => "Error checking API status"
                 ],
                 404
+            );
+        }
+    }
+
+    public function createReserve(Request $request)
+    {
+        try {
+
+            $request->validate([
+                'hotel_id' => 'required|integer|exists:hotels,id',
+                'room_id' => 'required|integer|exists:room,id',
+                'check_in' => 'required|date',
+                'check_out' => 'required|date|after:check_in',
+                'total' => 'required|numeric|min:0',
+            ]);
+
+            $reserve = new Reserve();
+            $reserve->hotel_id = $request->hotel_id;
+            $reserve->room_id = $request->room_id;
+            $reserve->check_in = $request->check_in;
+            $reserve->check_out = $request->check_out;
+            $reserve->total = $request->total;
+
+
+            $reserve_saved = $reserve->save();
+
+            if($reserve_saved){
+                return response()->json(
+                    [
+                        'status' => "OK",
+                        'message' => "Reserve created successfully",
+                        'data' => $reserve
+                    ],
+                    200);
+            } else {
+                return response()->json(
+                    [
+                        'status' => 'error',
+                        'message' => "Failed to save reserve",
+                    ],
+                    500);
+            }
+        } catch (\Exception $error) {
+            return response()->json(
+                [
+                    'error' => $error->getMessage(),
+                    'message' => "An error occurred while saving the reserve"
+                ],
+                500
             );
         }
     }
