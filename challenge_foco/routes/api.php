@@ -13,7 +13,8 @@ Route::put('/update-hotel',[HotelController::class, 'updateHotel']);
 Route::delete('/delete-hotel/{id}',[HotelController::class, 'deleteHotel']);
 
 
-
+Route::get('/status-room',[RoomController::class, 'status']);
+Route::get('/rooms',[RoomController::class, 'rooms']);
 
 
 
