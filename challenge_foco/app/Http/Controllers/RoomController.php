@@ -220,5 +220,48 @@ class RoomController extends Controller
     }
 
 
+    public function createRoom(Request $request)
+    {
+        try {
+
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'hotel_id' => 'required|integer|exists:hotels,id',
+            ]);
+
+            $room = new Room();
+            $room->name = $request->name;
+            $room->hotel_id = $request->hotel_id;
+            $room_saved = $room->save();
+
+            if($room_saved){
+                return response()->json(
+                    [
+                        'status' => "OK",
+                        'message' => "Room created successfully",
+                        'data' => $room
+                    ],
+                    200);
+            } else {
+                return response()->json(
+                    [
+                        'status' => 'error',
+                        'message' => "Failed to save room",
+                    ],
+                    500);
+            }
+        } catch (\Exception $error) {
+            return response()->json(
+                [
+                    'error' => $error->getMessage(),
+                    'message' => "An error occurred while saving the room"
+                ],
+                500
+            );
+        }
+    }
+
+
+
 
 }

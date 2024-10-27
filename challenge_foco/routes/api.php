@@ -17,5 +17,5 @@ Route::get('/status-room',[RoomController::class, 'status']);
 Route::get('/rooms',[RoomController::class, 'rooms']);
 Route::get('/room-by-id/{id}',[RoomController::class, 'RoomById']);
 Route::post('/room',[RoomController::class, 'room']);
-
+Route::post('/create-room',[RoomController::class, 'createRoom']);
 
