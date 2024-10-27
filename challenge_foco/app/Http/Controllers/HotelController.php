@@ -81,6 +81,30 @@ class HotelController extends Controller
         }
     }
 
+    public function createHotel(Request $request)
+    {
+        try {
+            $hotel = new Hotel();
+            $hotel->name = $request->name;
+            $hotel->save();
+
+            return response()->json(
+                [
+                    'status' => "OK",
+                    'message' => "sucess",
+                    'data' => $hotel
+                ],
+                200);
+
+        } catch (\Exception $error) {
+            return response()->json(
+                [
+                    'error' => $error->getMessage()
+                ],
+                400);
+        }
+    }
+
 }
 
 
