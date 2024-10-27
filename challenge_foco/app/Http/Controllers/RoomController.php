@@ -102,8 +102,13 @@ class RoomController extends Controller
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Room data"
-     *         @OA\JsonContent(ref="#/components/schemas/Room")
+     *         description="Room data",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="id", type="integer", description="Room ID"),
+     *             @OA\Property(property="name", type="string", description="Room's name"),
+     *             @OA\Property(property="hotel_id", type="integer", description="Hotel ID associated with the room")
+     *         )
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -111,7 +116,7 @@ class RoomController extends Controller
      *     )
      * )
      */
-    public function roomById(Request $request) #POST
+    public function roomById(Request $request)
     {
         try{
             $room = Room::find($request->id);

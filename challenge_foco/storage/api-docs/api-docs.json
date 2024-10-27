@@ -326,7 +326,7 @@
                                     "properties": {
                                         "status": {
                                             "type": "string",
-                                            "example": "ok"
+                                            "example": "OK"
                                         },
                                         "message": {
                                             "type": "string",
@@ -372,6 +372,127 @@
                     }
                 }
             }
+        },
+        "/api/room/status": {
+            "get": {
+                "tags": [
+                    "Status"
+                ],
+                "summary": "Display API status room",
+                "description": "Get the current status room of the API",
+                "operationId": "68b9ec0eff3576ae249c6f0218950268",
+                "responses": {
+                    "200": {
+                        "description": "API is running"
+                    }
+                }
+            }
+        },
+        "/api/rooms": {
+            "get": {
+                "tags": [
+                    "Rooms"
+                ],
+                "summary": "Get a list of rooms",
+                "description": "Retrieve all rooms with pagination",
+                "operationId": "3e2fd43f07a05dbf449c72afd425e4f2",
+                "responses": {
+                    "200": {
+                        "description": "List of rooms"
+                    }
+                }
+            }
+        },
+        "/api/room-by-id/{id}": {
+            "get": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "Get room by ID, GET Method",
+                "description": "Retrieve a room by its ID",
+                "operationId": "ae8d38ba3aff8bd7054947bb18cf4f93",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Room ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Room data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "Room ID",
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "description": "Room's name",
+                                            "type": "string"
+                                        },
+                                        "hotel_id": {
+                                            "description": "Hotel ID associated with the room",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Room not found"
+                    }
+                }
+            }
+        },
+        "/api/room": {
+            "post": {
+                "tags": [
+                    "Rooms"
+                ],
+                "summary": "Get room by ID, POST method",
+                "description": "Retrieve a room record using the room ID",
+                "operationId": "8baf010c5a54c1be90afb6e8a594966b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Room ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "hotel_id",
+                        "in": "query",
+                        "description": "Hotel ID to which the room belongs",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Room found"
+                    },
+                    "404": {
+                        "description": "Room not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -389,6 +510,24 @@
                     }
                 },
                 "type": "object"
+            },
+            "Room": {
+                "description": "Room model",
+                "properties": {
+                    "id": {
+                        "description": "Room ID",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Room's name",
+                        "type": "string"
+                    },
+                    "hotel_id": {
+                        "description": "ID of the associated hotel",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
             }
         }
     },
@@ -400,6 +539,14 @@
         {
             "name": "Hotels",
             "description": "Hotels"
+        },
+        {
+            "name": "Rooms",
+            "description": "Rooms"
+        },
+        {
+            "name": "Room",
+            "description": "Room"
         }
     ]
 }
