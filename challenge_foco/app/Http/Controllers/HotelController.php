@@ -34,4 +34,53 @@ class HotelController extends Controller
             200
         );
     }
+
+    public function hotelById(Request $request)
+    {
+        $hotel = Hotel::find($request->id);
+        return response()->json(
+            [
+                'status' => "OK",
+                'message' => "sucess",
+                'data' => $hotel
+            ],
+            200
+        );
+
+    }
+
+    public function hotel(Request $request)
+    {
+        try {
+            $hotel = Hotel::find($request->id);
+            if ($hotel) {
+                return response()->json(
+                    [
+                        'status' => "OK",
+                        'message' => "sucess",
+                        'data' => $hotel
+                    ],
+                    200
+                );
+            } else {
+                return response()->json(
+                    [
+                        'status' => "error",
+                        'message' => "Hotel ID is required",
+                    ],
+                    404
+                );
+            }
+        } catch (\Exception $error) {
+            return response()->json(
+                [
+                    'error' => $error->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
 }
+
+
