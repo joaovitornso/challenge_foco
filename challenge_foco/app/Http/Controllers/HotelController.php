@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Hotel;
 use Illuminate\Http\Request;
 
+use function Laravel\Prompts\error;
 
 /**
  * @OA\Schema(
@@ -32,14 +33,25 @@ class HotelController extends Controller
      */
     public function status()
     {
-        return response()->json(
-            [
-                'hotels' => "OK",
-                'message' => "API is running!"
-            ],
-            200
-        );
+        try{
+            return response()->json(
+                [
+                    'hotels' => "OK",
+                    'message' => "API is up and running!"
+                ],
+                200
+            );
+        } catch (\Exception $error) {
+            return response()-> json(
+                [
+                    "error" => $error->getMessage(),
+                    "message" => "Error checking API status"
+                ],
+                404
+            );
+        }
     }
+
 
     /**
      * @OA\Get(
@@ -55,15 +67,27 @@ class HotelController extends Controller
      */
     public function hotels()
     {
-        $hotels = Hotel::paginate(10);
-        return response()->json(
-            [
-                'status' => "OK",
-                'message' => "success",
-                'data' => $hotels
-            ],
-         200
-        );
+
+        try{
+            $hotels = Hotel::paginate(10);
+            return response()->json(
+                [
+                    'status' => "OK",
+                    'message' => "success",
+                    'data' => $hotels
+                ],
+             200
+            );
+        } catch (\Exception $error) {
+            return response()->json(
+                [
+                    "error" => $error->getMessage(),
+                    'message' => "Error retrieving hotels data"
+                ],
+                404
+            );
+        }
+
     }
 
     /**
@@ -89,17 +113,37 @@ class HotelController extends Controller
      *     )
      * )
      */
-    public function hotelById(Request $request)
+    public function hotelById(Request $request) #POST
     {
-        $hotel = Hotel::find($request->id);
-        return response()->json(
-            [
-                'status' => "OK",
-                'message' => "success",
-                'data' => $hotel
-            ],
-            200
-        );
+        try{
+            $hotel = Hotel::find($request->id);
+            if($hotel){
+                return response()->json(
+                    [
+                        'status' => "OK",
+                        'message' => "success",
+                        'data' => $hotel
+                    ],
+                    200
+                );
+            } else {
+                return response()->json(
+                    [
+                        'status' => "error",
+                        'message' => "Hotel not found",
+                    ],
+                    400
+                );
+            }
+        } catch(\Exception $error) {
+            return response()->json(
+                [
+                    "error" => $error->getMessage(),
+                    'message' => "Something went wrong while trying to retrieve the hotel"
+                ],
+                500
+            );
+        }
     }
 
     /**
@@ -132,7 +176,7 @@ class HotelController extends Controller
      *     )
      * )
      */
-    public function hotel(Request $request)
+    public function hotel(Request $request) #POST
     {
         try {
             $hotel = Hotel::find($request->id);
@@ -151,13 +195,14 @@ class HotelController extends Controller
                         'status' => "error",
                         'message' => "Hotel ID is required",
                     ],
-                    404
+                    400
                 );
             }
         } catch (\Exception $error) {
             return response()->json(
                 [
-                    'error' => $error->getMessage()
+                    "error" => $error->getMessage(),
+                    "message" => "An unexpected error occurred while retrieving the hotel"
                 ],
                 500
             );
@@ -207,22 +252,32 @@ class HotelController extends Controller
         try {
             $hotel = new Hotel();
             $hotel->name = $request->name;
-            $hotel->save();
+            $hotel_saved = $hotel->save();
 
-            return response()->json(
-                [
-                    'status' => "OK",
-                    'message' => "success",
-                    'data' => $hotel
-                ],
-                200);
-
+            if($hotel_saved){
+                return response()->json(
+                    [
+                        'status' => "OK",
+                        'message' => "Hotel created successfully",
+                        'data' => $hotel
+                    ],
+                    200);
+            } else {
+                return response()->json(
+                    [
+                        'status' => 'error',
+                        'message' => "Failed to save hotel",
+                    ],
+                    500);
+            }
         } catch (\Exception $error) {
             return response()->json(
                 [
-                    'error' => $error->getMessage()
+                    'error' => $error->getMessage(),
+                    'message' => "An error occurred while saving the hotel"
                 ],
-                400);
+                500
+            );
         }
     }
 
@@ -268,30 +323,32 @@ class HotelController extends Controller
     {
         try {
             $hotel = Hotel::find($request->id);
-            $hotel->name = $request->name;
-            $request->save();
-            if ($hotel) {
-                return response()->json(
-                    [
-                        'status' => "OK",
-                        'message' => "success",
-                        'data' => $hotel
-                    ],
-                    200
-                );
-            } else {
+
+            if (!$hotel) {
                 return response()->json(
                     [
                         'status' => "error",
-                        'message' => "Hotel ID is required",
+                        'message' => "Hotel not found",
                     ],
-                    404
+                    400
                 );
             }
+
+            $hotel->name = $request->name;
+            $request->save();
+            return response()->json(
+                [
+                    'status' => "OK",
+                    'message' => "Hotel updated successfully",
+                    'data' => $hotel
+                ],
+                200
+            );
         } catch (\Exception $error) {
             return response()->json(
                 [
-                    'error' => $error->getMessage()
+                    'error' => $error->getMessage(),
+                    'message' => "Error updating hotel information"
                 ],
                 500
             );
@@ -315,7 +372,7 @@ class HotelController extends Controller
      *         response=200,
      *         description="Hotel Deleted",
      *         @OA\JsonContent(
-    *             @OA\Property(property="status", type="string", example="ok"),
+    *             @OA\Property(property="status", type="string", example="OK"),
     *             @OA\Property(property="message", type="string", example="success")
     *         )
      *     ),
@@ -339,11 +396,22 @@ class HotelController extends Controller
     {
         try {
             $hotel = Hotel::find($request->id);
+
+            if(!$hotel){
+                return response()->json(
+                    [
+                        'status' => 'error',
+                        'message' => 'Hotel not found'
+                    ],
+                    400
+                );
+            }
+
             $hotel->delete();
             return response()->json(
                 [
-                    'status' => 'ok',
-                    'message' => 'sucess'
+                    'status' => 'OK',
+                    'message' => 'Hotel deleted successfully'
                 ],
                 200
             );
@@ -351,7 +419,9 @@ class HotelController extends Controller
         } catch(\Exception $error){
             return response()->json(
                 [
-                    'error' => $error->getMessage()
+                    'error' => $error->getMessage(),
+                    'message' => "Error deleting hotel"
+
                 ],
                 500
             );
