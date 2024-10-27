@@ -776,6 +776,39 @@
                 },
                 "type": "object"
             },
+            "Reserve": {
+                "description": "Reserve model",
+                "properties": {
+                    "id": {
+                        "description": "Reserve ID",
+                        "type": "integer"
+                    },
+                    "hotel_id": {
+                        "description": "ID of the associated hotel",
+                        "type": "integer"
+                    },
+                    "room_id": {
+                        "description": "ID of the associated room",
+                        "type": "integer"
+                    },
+                    "check_in": {
+                        "description": "Check-in date in YYYY-MM-DD format",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "check_out": {
+                        "description": "Check-out date in YYYY-MM-DD format",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "total": {
+                        "description": "Total cost of the reservation",
+                        "type": "number",
+                        "format": "float"
+                    }
+                },
+                "type": "object"
+            },
             "Room": {
                 "description": "Room model",
                 "properties": {
