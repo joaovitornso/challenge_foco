@@ -373,6 +373,21 @@
                 }
             }
         },
+        "/api/reserve/status": {
+            "get": {
+                "tags": [
+                    "Status"
+                ],
+                "summary": "Display API status",
+                "description": "Get the current status of the API",
+                "operationId": "6adc3672a0ef74919a855dcac676229f",
+                "responses": {
+                    "200": {
+                        "description": "API is running"
+                    }
+                }
+            }
+        },
         "/api/room/status": {
             "get": {
                 "tags": [

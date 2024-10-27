@@ -22,4 +22,4 @@ Route::post('/create-room',[RoomController::class, 'createRoom']);
 Route::put('/update-room',[RoomController::class, 'updateRoom']);
 Route::delete('/delete-room/{id}',[RoomController::class, 'deleteRoom']);
 
-Route::get('/status-reserve',[ReserveController::class, 'status']);
+Route::get('/reserve/status',[ReserveController::class, 'status']);
