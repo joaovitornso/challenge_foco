@@ -16,6 +16,6 @@ Route::delete('/delete-hotel/{id}',[HotelController::class, 'deleteHotel']);
 Route::get('/status-room',[RoomController::class, 'status']);
 Route::get('/rooms',[RoomController::class, 'rooms']);
 Route::get('/room-by-id/{id}',[RoomController::class, 'RoomById']);
-
+Route::post('/room',[RoomController::class, 'room']);
 
 

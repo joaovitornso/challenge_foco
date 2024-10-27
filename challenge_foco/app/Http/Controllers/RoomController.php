@@ -144,5 +144,39 @@ class RoomController extends Controller
         }
     }
 
+    public function room(Request $request) #POST
+    {
+        try {
+            $room = Room::find($request->id);
+            if ($room) {
+                return response()->json(
+                    [
+                        'status' => "OK",
+                        'message' => "success",
+                        'data' => $room
+                    ],
+                    200
+                );
+            } else {
+                return response()->json(
+                    [
+                        'status' => "error",
+                        'message' => "Room ID is required",
+                    ],
+                    400
+                );
+            }
+        } catch (\Exception $error) {
+            return response()->json(
+                [
+                    "error" => $error->getMessage(),
+                    "message" => "An unexpected error occurred while retrieving the room"
+                ],
+                500
+            );
+        }
+    }
+
+
 
 }
