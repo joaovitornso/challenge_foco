@@ -406,7 +406,7 @@
         "/api/room-by-id/{id}": {
             "get": {
                 "tags": [
-                    "Room"
+                    "Rooms"
                 ],
                 "summary": "Get room by ID, GET Method",
                 "description": "Retrieve a room by its ID",
@@ -543,10 +543,6 @@
         {
             "name": "Rooms",
             "description": "Rooms"
-        },
-        {
-            "name": "Room",
-            "description": "Room"
         }
     ]
 }

@@ -90,7 +90,7 @@ class RoomController extends Controller
     /**
      * @OA\Get(
      *     path="/api/room-by-id/{id}",
-     *     tags={"Room"},
+     *     tags={"Rooms"},
      *     summary="Get room by ID, GET Method",
      *     description="Retrieve a room by its ID",
      *     @OA\Parameter(
@@ -260,6 +260,9 @@ class RoomController extends Controller
             );
         }
     }
+
+
+
 
 
 
