@@ -87,6 +87,30 @@ class RoomController extends Controller
         }
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/room-by-id/{id}",
+     *     tags={"Room"},
+     *     summary="Get room by ID, GET Method",
+     *     description="Retrieve a room by its ID",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Room ID",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Room data"
+     *         @OA\JsonContent(ref="#/components/schemas/Room")
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Room not found"
+     *     )
+     * )
+     */
     public function roomById(Request $request) #POST
     {
         try{
