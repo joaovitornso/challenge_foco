@@ -211,7 +211,7 @@
                     "Hotels"
                 ],
                 "summary": "Update a hotel",
-                "description": "Up a hotel record",
+                "description": "Update a hotel record",
                 "operationId": "88d4edb029f9f8a637b9e452ab4d51b4",
                 "requestBody": {
                     "required": true,
@@ -280,6 +280,89 @@
                                         "error": {
                                             "type": "string",
                                             "example": "Server error message"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/delete-hotel": {
+            "delete": {
+                "tags": [
+                    "Hotels"
+                ],
+                "summary": "Delete a hotel",
+                "description": "Delete a hotel record",
+                "operationId": "d96675df22b3b9e25c26a741f15a5a78",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Hotel Deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "ok"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "success"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Hotel ID not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Server error"
                                         }
                                     },
                                     "type": "object"
