@@ -298,6 +298,31 @@ class HotelController extends Controller
         }
     }
 
+    public function deleteHotel(Request $request)
+    {
+        try {
+            $hotel = Hotel::find($request->id);
+            $hotel->delete();
+            return response()->json(
+                [
+                    'status' => 'ok',
+                    'message' => 'sucess'
+                ],
+                200
+            );
+
+        } catch(\Exception $error){
+            return response()->json(
+                [
+                    'error' => $error->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
+
+
 }
 
 
