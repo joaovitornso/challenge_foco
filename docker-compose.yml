@@ -44,16 +44,17 @@ services:
     ports:
       - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: db_password
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: challenge_db
       MYSQL_USER: user_db_app
-      MYSQL_PASSWORD: db_password
+      MYSQL_PASSWORD: password
     networks:
       - app-network
     volumes:
       # - ./docker/mysql/challenge_db.sql:/docker-entrypoint-initdb.d/challenge_db.sql 
       - ./database_data:/var/lib/mysql/
       - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 30s

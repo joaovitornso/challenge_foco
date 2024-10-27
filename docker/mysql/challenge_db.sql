@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS challenge_db;
-USE challenge_db;
+#CREATE DATABASE IF NOT EXISTS challenge_db;
+#USE challenge_db;
 
 CREATE TABLE IF NOT EXISTS Hotel (
     id INT PRIMARY KEY,
