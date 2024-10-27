@@ -226,6 +226,44 @@ class HotelController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/update-hotel",
+     *     tags={"Hotels"},
+     *     summary="Update a hotel",
+     *     description="Up a hotel record",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"name"},
+     *             @OA\Property(property="name", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Hotel Updated",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="success"),
+     *             @OA\Property(property="data", ref="#/components/schemas/Hotel")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="error"),
+     *             @OA\Property(property="error", type="string", example="Bad request")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal server error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Server error message")
+     *         )
+     *     )
+     * )
+     */
     public function updateHotel(Request $request)
     {
         try {
