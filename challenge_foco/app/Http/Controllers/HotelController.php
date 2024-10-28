@@ -67,7 +67,6 @@ class HotelController extends Controller
      */
     public function hotels()
     {
-
         try{
             $hotels = Hotel::paginate(10);
             return response()->json(
@@ -87,6 +86,22 @@ class HotelController extends Controller
                 404
             );
         }
+
+    }
+    public function hotels1()
+    {
+
+
+        $hotels = Hotel::paginate(10);
+        return response()->json(
+            [
+                'status' => "OK",
+                'message' => "success",
+                'data' => $hotels
+            ],
+            200
+        );
+
 
     }
 
