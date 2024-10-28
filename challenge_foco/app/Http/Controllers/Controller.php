@@ -15,14 +15,15 @@ namespace App\Http\Controllers;
  *         name="Apache 2.0",
  *         url="https://www.apache.org/licenses/LICENSE-2.0.html"
  *     )
- * )
+ * ),
+ *
  *
  * @OA\Get(
  *     path="/",
  *     description="Home page",
  *     @OA\Response(response="default", description="Welcome page")
  * )
- */ 
+ */
 
 abstract class Controller
 {
