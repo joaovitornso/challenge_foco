@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 //     Log::info(Inspiring::quote());
 // })->purpose('Import XML data');
 
-Schedule::command('app:import-xml')->everyTenMinutes()->after(function () {
+Schedule::command('app:import-xml')->everySecond()->after(function () {
     Log::info('Comando app:import-xml executado.');
 });
 

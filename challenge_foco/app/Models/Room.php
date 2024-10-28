@@ -7,5 +7,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Room extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'id',
+        'hotelCode',
+        'name',
+    ];
+
+
+    public function getHotelCodeAttribute()// Acessor
+    {
+        return $this->attributes['hotel_id'];
+    }
+
+    public function setHotelCodeAttribute($value) // Mutador
+    {
+        $this->attributes['hotel_id'] = $value;
+    }
 }

@@ -103,7 +103,7 @@ class ReserveController extends Controller
 
             $request->validate([
                 'hotel_id' => 'required|integer|exists:hotels,id',
-                'room_id' => 'required|integer|exists:room,id',
+                'room_id' => 'required|integer|exists:rooms,id',
                 'check_in' => 'required|date',
                 'check_out' => 'required|date|after:check_in',
                 'total' => 'required|numeric|min:0',
@@ -131,7 +131,7 @@ class ReserveController extends Controller
                 return response()->json(
                     [
                         'status' => 'error',
-                        'message' => "Failed to save reserve",
+                        'message' => "Failed to save reserve"
                     ],
                     500);
             }
@@ -139,6 +139,7 @@ class ReserveController extends Controller
             return response()->json(
                 [
                     'error' => $error->getMessage(),
+                    'trace' => $error->getTraceAsString(),
                     'message' => "An error occurred while saving the reserve"
                 ],
                 500

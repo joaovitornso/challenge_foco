@@ -279,7 +279,8 @@ class RoomController extends Controller
                         'message' => "Room created successfully",
                         'data' => $room
                     ],
-                    200);
+                    200
+                );
             } else {
                 return response()->json(
                     [
@@ -367,7 +368,7 @@ class RoomController extends Controller
                 $room->hotel_id = $request->hotel_id;
             }
 
-            $request->save();
+            $room->save();
             return response()->json(
                 [
                     'status' => "OK",

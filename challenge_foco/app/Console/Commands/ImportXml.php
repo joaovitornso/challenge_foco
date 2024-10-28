@@ -59,17 +59,15 @@ class ImportXml extends Command
                 'id' => (integer) $hotel['id'],
                 'name' => (string) $hotel->Name
             ];
-
-            // Exibir dados do hotel no terminal
             $this->line('Hotel Data: ' . print_r($hotelData, true));
         }
 
-        // foreach ($xml->Hotel as $hotel) {
-        //     Hotel::updateOrCreate(
-        //         ['id' => (integer) $hotel['id']],
-        //         ['name' => (string) $hotel->Name]
-        //     );
-        // }
+        foreach ($xml->Hotel as $hotel) {
+            Hotel::updateOrCreate(
+                ['id' => (integer) $hotel['id']],
+                ['name' => (string) $hotel->Name]
+            );
+        }
 
         Log::info('Import of hotels completed successfully!');
         $this->info('Import completed successfully!');
@@ -93,19 +91,18 @@ class ImportXml extends Command
                 'name' => (string) $room->Name
             ];
 
-            // Exibir dados do quarto no terminal
             $this->line('Room Data: ' . print_r($roomData, true));
         }
 
-        // foreach ($xml->Room as $room) {
-        //     Room::updateOrCreate(
-        //         ['id' => (integer) $room['id']],
-        //         [
-        //             'hotelCode' => (integer) $room['hotelCode'],
-        //             'name' => (string) $room->Name
-        //         ]
-        //     );
-        // }
+        foreach ($xml->Room as $room) {
+            Room::updateOrCreate(
+                ['id' => (integer) $room['id']],
+                [
+                    'hotelCode' => (integer) $room['hotelCode'],
+                    'name' => (string) $room->Name
+                ]
+            );
+        }
 
         Log::info('Import of rooms completed successfully!');
         $this->info('Import completed successfully!');
@@ -150,8 +147,8 @@ class ImportXml extends Command
         //     );
         // }
 
-        Log::info('Import of reserves completed successfully!');
-        $this->info('Import completed successfully!');
+        // Log::info('Import of reserves completed successfully!');
+        // $this->info('Import completed successfully!');
 
     }
 

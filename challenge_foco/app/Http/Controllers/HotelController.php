@@ -88,22 +88,7 @@ class HotelController extends Controller
         }
 
     }
-    public function hotels1()
-    {
 
-
-        $hotels = Hotel::paginate(10);
-        return response()->json(
-            [
-                'status' => "OK",
-                'message' => "success",
-                'data' => $hotels
-            ],
-            200
-        );
-
-
-    }
 
     /**
      * @OA\Get(
@@ -350,7 +335,7 @@ class HotelController extends Controller
             }
 
             $hotel->name = $request->name;
-            $request->save();
+            $hotel->save();
             return response()->json(
                 [
                     'status' => "OK",
