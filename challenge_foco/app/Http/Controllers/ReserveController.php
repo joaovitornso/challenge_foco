@@ -54,7 +54,48 @@ class ReserveController extends Controller
         }
     }
 
-
+    /**
+     * @OA\Post(
+     *     path="/api/reserve",
+     *     tags={"Reserves"},
+     *     summary="Get reserve by ID, POST method",
+     *     description="Retrieve a reserve record using the reserve ID",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="query",
+     *         description="Reserve ID",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      @OA\Parameter(
+     *         name="hotel_id",
+     *         in="query",
+     *         description="Hotel ID to which the reserve belongs",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      @OA\Parameter(
+     *         name="room_id",
+     *         in="query",
+     *         description="Room ID to which the reserve belongs",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Reserve found",
+     *
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Reserve not found",
+     *
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal server error",
+     *
+     *     )
+     * )
+     */
     public function reserve(Request $request) #POST
     {
         try {

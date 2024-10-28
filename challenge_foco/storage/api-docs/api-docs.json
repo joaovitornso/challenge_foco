@@ -388,6 +388,54 @@
                 }
             }
         },
+        "/api/reserve": {
+            "post": {
+                "tags": [
+                    "Reserves"
+                ],
+                "summary": "Get reserve by ID, POST method",
+                "description": "Retrieve a reserve record using the reserve ID",
+                "operationId": "2c32cd34c9babdc7684d1594715fd40c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Reserve ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "hotel_id",
+                        "in": "query",
+                        "description": "Hotel ID to which the reserve belongs",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "room_id",
+                        "in": "query",
+                        "description": "Room ID to which the reserve belongs",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Reserve found"
+                    },
+                    "404": {
+                        "description": "Reserve not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
         "/create-reserve": {
             "post": {
                 "tags": [
