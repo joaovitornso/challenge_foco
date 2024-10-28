@@ -54,6 +54,40 @@ class ReserveController extends Controller
         }
     }
 
+
+    public function reserve(Request $request) #POST
+    {
+        try {
+            $reserve = Reserve::find($request->id);
+            if ($reserve) {
+                return response()->json(
+                    [
+                        'status' => "OK",
+                        'message' => "success",
+                        'data' => $reserve
+                    ],
+                    200
+                );
+            } else {
+                return response()->json(
+                    [
+                        'status' => "error",
+                        'message' => "Reserve ID is required",
+                    ],
+                    400
+                );
+            }
+        } catch (\Exception $error) {
+            return response()->json(
+                [
+                    "error" => $error->getMessage(),
+                    "message" => "An unexpected error occurred while retrieving the room"
+                ],
+                500
+            );
+        }
+    }
+
     /**
      * @OA\Post(
      *     path="/create-reserve",
