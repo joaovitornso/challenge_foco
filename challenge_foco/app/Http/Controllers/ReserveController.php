@@ -63,8 +63,7 @@ class ReserveController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             required={"name"},
-     *             @OA\Property(property="name", type="string"),
+     *             required={"hotel_id", "room_id", "check_in", "check_out", "total"},
      *             @OA\Property(property="hotel_id", type="integer", description="ID of associated hotel"),
      *             @OA\Property(property="room_id", type="integer", description="ID of associated room"),
      *             @OA\Property(property="check_in", type="string", format="date", description="Check-in date in YYYY-MM-DD format"),
