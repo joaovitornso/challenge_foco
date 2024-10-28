@@ -66,24 +66,24 @@ Exemplos de formatação de resposta em XML e JSON:
 
 ## Requisitos Desenvolvidos
 
-# **Modelagem de Banco de Dados**
+**Modelagem de Banco de Dados**
 Realizada com o MySQL Workbench com base nos arquivos XML fornecidos.
 
-# **CRUD de Quartos/Acomodações
+**CRUD de Quartos/Acomodações**
 Implementado via API REST.
 
-# **Script de Importação XML
+**Script de Importação XML**
 Script em PHP/Laravel para importar dados XML e persistir no banco de dados, com execução via cron job.
 
-# **Endpoint de Reserva (POST)
+**Endpoint de Reserva (POST)**
 Endpoint para criação de reservas, com tentativa de persistência dos dados no banco.
 
 ## Diferenciais Implementados
-# **Documentação com Swagger / OpenAPI 3.0
+**Documentação com Swagger / OpenAPI 3.0**
 
 Todos os endpoints estão documentados com Swagger/OpenAPI 3.0.
 
-# **Docker
+**Docker**
 
 Foi utilizado docker na aplicação para facilitar o ambiente de desenvolvimento e execução:
 
@@ -92,20 +92,20 @@ Foi utilizado docker na aplicação para facilitar o ambiente de desenvolvimento
   - **MySQL Container:** Banco de dados para persistência de dados.
   - **PHPMyAdmin Container:** Interface de administração do banco de dados.
 
-# **Padrão de GIT Commit
+**Padrão de GIT Commit**
 
 Implementado o **Conventional Commits Pattern** para assegurar legibilidade e entendimento dos commits e versões.
 
 
 ## Processos do Desenvolvimento
-# **Como Executar o Cron
+**Como Executar o Cron**
 
   - **Acesse o servidor onde a aplicação está hospedada.
   - **Configure o cron para chamar o script de importação em intervalos definidos.
       - **Exemplo de configuração no crontab: * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
   - **Verifique os logs para confirmar a execução.
 
-# *Como Cadastrar um Quarto
+**Como Cadastrar um Quarto**
 
   1. Acesse o endpoint /api/create-room via API REST.
   2. Envie os dados do quarto em formato JSON.
@@ -117,7 +117,7 @@ Implementado o **Conventional Commits Pattern** para assegurar legibilidade e en
   }
 ```
 
-# *Outros Processos
+**Outros Processos**
 
   - **Para realizar uma reserva:**
       - Utilize o endpoint /api/create-reserve com o método POST.
@@ -125,7 +125,7 @@ Implementado o **Conventional Commits Pattern** para assegurar legibilidade e en
   - **Documentação do Swagger:**
       - Acesse /api/documentation para visualizar a documentação interativa de cada endpoint.
 
-Tecnologias Utilizadas
+**Tecnologias Utilizadas**
 
   - PHP / Laravel
   - Docker
