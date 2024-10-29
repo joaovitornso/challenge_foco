@@ -30,6 +30,5 @@ class DiscountController extends Controller
                 404
             );
         }
-
     }
 }
