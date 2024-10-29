@@ -54,6 +54,30 @@ class ReserveController extends Controller
         }
     }
 
+    public function reserves()
+    {
+        try{
+            $reserves = Reserve::paginate(10);
+            return response()->json(
+                [
+                    'status' => "OK",
+                    'message' => "success",
+                    'data' => $reserves
+                ],
+             200
+            );
+        } catch (\Exception $error) {
+            return response()->json(
+                [
+                    "error" => $error->getMessage(),
+                    'message' => "Error retrieving reserves data"
+                ],
+                404
+            );
+        }
+
+    }
+
     /**
      * @OA\Post(
      *     path="/api/reserve",
@@ -122,7 +146,7 @@ class ReserveController extends Controller
             return response()->json(
                 [
                     "error" => $error->getMessage(),
-                    "message" => "An unexpected error occurred while retrieving the room"
+                    "message" => "An unexpected error occurred while retrieving the reserve"
                 ],
                 500
             );
@@ -220,4 +244,6 @@ class ReserveController extends Controller
             );
         }
     }
+
+
 }
