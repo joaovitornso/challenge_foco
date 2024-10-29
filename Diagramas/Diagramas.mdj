@@ -14666,7 +14666,7 @@
 											"top": 637,
 											"width": 159.3486328125,
 											"height": 13,
-											"text": "+created_at: TIMESTAMP",
+											"text": "-created_at: TIMESTAMP",
 											"horizontalAlignment": 0
 										}
 									],
@@ -18804,6 +18804,7 @@
 								"$ref": "AAAAAAGSwbSBKwFt4Is="
 							},
 							"name": "created_at",
+							"visibility": "private",
 							"type": "TIMESTAMP"
 						}
 					]
