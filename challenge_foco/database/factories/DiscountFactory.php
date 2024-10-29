@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\CouponCode;
+use App\Models\Reserve;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,11 @@ class DiscountFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'reserve_id' => Reserve::factory(),
+            'coupon_id' => CouponCode::factory(),
+            'discount_type' => $this->faker->randomElement(['percent', 'fixed']),
+            'value' => $this->faker->randomFloat(2, 0, 100), 
+            'description' => $this->faker->sentence(),
         ];
     }
 }
