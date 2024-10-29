@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Daily;
+use App\Models\Guest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Console\Command;
 use App\Models\Hotel;
@@ -122,6 +123,16 @@ class ImportXml extends Command
                         'total' => (float) $reserve->Total,
                     ]
                 );
+
+                foreach ($reserve->Guests->Guest as $guestXml) {
+                    Guest::create([
+                        'reserve_id' => (integer) $reserve['id'],
+                        'name' => (string)$guestXml->Name,
+                        'last_name' => (string)$guestXml->LastName,
+                        'phone' => (string)$guestXml->Phone,
+                    ]);
+                }
+
                 if (isset($reserve->Dailies)) {
                     foreach ($reserve->Dailies->Daily as $dailyXml) {
                         Daily::create([
