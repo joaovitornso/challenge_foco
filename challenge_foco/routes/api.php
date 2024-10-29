@@ -19,7 +19,6 @@ Route::post('/create-hotel',[HotelController::class, 'createHotel']);
 Route::put('/update-hotel',[HotelController::class, 'updateHotel']);
 Route::delete('/delete-hotel/{id}',[HotelController::class, 'deleteHotel']);
 
-
 Route::get('/status-room',[RoomController::class, 'status']);
 Route::get('/rooms',[RoomController::class, 'rooms']);
 Route::get('/room-by-id/{id}',[RoomController::class, 'RoomById']);
@@ -32,8 +31,8 @@ Route::get('/reserve/status',[ReserveController::class, 'status']);
 Route::post('/reserves',[ReserveController::class, 'reserves']);
 Route::post('/reserve',[ReserveController::class, 'reserve']);
 Route::post('/create-reserve',[ReserveController::class, 'createReserve']);
+Route::put('/update-reserve',[ReserveController::class, 'updateReserve']);
 Route::delete('/delete-reserve/{id}',[ReserveController::class, 'deleteReserve']);
-
 
 Route::get('/discounts',[DiscountController::class, 'discounts']);
 Route::post('/discount',[DiscountController::class, 'discount']);
