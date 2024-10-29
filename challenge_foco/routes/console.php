@@ -9,7 +9,7 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-Schedule::command('app:import-xml')->everyTenSeconds()->after(function () {
+Schedule::command('app:import-xml')->everyFourHours()->after(function () {
     Log::info('Comando app:import-xml executado.');
 });
 
