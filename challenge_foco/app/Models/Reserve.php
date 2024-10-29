@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -9,31 +10,52 @@ class Reserve extends Model
 {
     protected $fillable = [
         'id',
-        'hotelCode',
-        'roomCode',
-        'checkIn',
-        'checkOut',
+        'hotel_id',
+        'room_id',
+        'check_in',
+        'check_out',
         'total',
     ];
 
-    public function getHotelCodeAttribute()// Acessor
+    protected function hotelCode(): Attribute
     {
-        return $this->attributes['hotel_id'];
+        return Attribute::make(
+            get: fn ($value) => $this->attributes['hotel_id'],
+            set: fn ($value) => $this->attributes['hotel_id'] = $value
+        );
     }
 
-    public function setHotelCodeAttribute($value) // Mutador
+    protected function roomCode(): Attribute
     {
-        $this->attributes['hotel_id'] = $value;
+        return Attribute::make(
+            get: fn ($value) => $this->attributes['room_id'],
+            set: fn ($value) => $this->attributes['room_id'] = $value
+        );
     }
 
-    public function getRoomCodeAttribute()// Acessor
+    protected function checkIn(): Attribute
     {
-        return $this->attributes['room_id'];
+        return Attribute::make(
+            get: fn ($value) => $this->attributes['check_in'],
+            set: fn ($value) => $this->attributes['check_in'] = $value
+        );
     }
 
-    public function setRoomCodeAttribute($value) // Mutador
+    protected function checkOut(): Attribute
     {
-        $this->attributes['room_id'] = $value;
+        return Attribute::make(
+            get: fn ($value) => $this->attributes['check_out'],
+            set: fn ($value) => $this->attributes['check_out'] = $value
+        );
     }
+
+    protected function total(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value,
+            set: fn ($value) => round($value, 2)
+        );
+    }
+
 
 }

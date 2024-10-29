@@ -54,23 +54,21 @@ class ImportXml extends Command
         $xml = simplexml_load_file($filePath);
         Log::info('Importing hotels from: ' . $filePath);
 
-        foreach ($xml->Hotel as $hotel) {
-            $hotelData = [
-                'id' => (integer) $hotel['id'],
-                'name' => (string) $hotel->Name
-            ];
-            $this->line('Hotel Data: ' . print_r($hotelData, true));
+        try{
+            foreach ($xml->Hotel as $hotel) {
+                Hotel::updateOrCreate(
+                    ['id' => (integer) $hotel['id']],
+                    ['name' => (string) $hotel->Name]
+                );
+            }
+
+            Log::info('\nImport of hotels completed successfully!');
+            $this->info('\nImport completed successfully!');
+        } catch (\Exception $e) {
+            Log::error('Erro ao importar hotéis: ' . $e->getMessage());
         }
 
-        foreach ($xml->Hotel as $hotel) {
-            Hotel::updateOrCreate(
-                ['id' => (integer) $hotel['id']],
-                ['name' => (string) $hotel->Name]
-            );
-        }
 
-        Log::info('Import of hotels completed successfully!');
-        $this->info('Import completed successfully!');
 
     }
 
@@ -84,29 +82,21 @@ class ImportXml extends Command
         $xml = simplexml_load_file($filePath);
         Log::info('Importing rooms from: ' . $filePath);
 
-        foreach ($xml->Room as $room) {
-            $roomData = [
-                'id' => (integer) $room['id'],
-                'hotelCode' => (integer) $room['hotelCode'],
-                'name' => (string) $room->Name
-            ];
-
-            $this->line('Room Data: ' . print_r($roomData, true));
+        try{
+            foreach ($xml->Room as $room) {
+                Room::updateOrCreate(
+                    ['id' => (integer) $room['id']],
+                    [
+                        'hotel_id' => (integer) $room['hotelCode'],
+                        'name' => (string) $room->Name
+                    ]
+                );
+            }
+            Log::info('\nImport of rooms completed successfully!');
+            $this->info('\nImport completed successfully!');
+        } catch (\Exception $e) {
+            Log::error('Erro ao importar quartos: ' . $e->getMessage());
         }
-
-        foreach ($xml->Room as $room) {
-            Room::updateOrCreate(
-                ['id' => (integer) $room['id']],
-                [
-                    'hotelCode' => (integer) $room['hotelCode'],
-                    'name' => (string) $room->Name
-                ]
-            );
-        }
-
-        Log::info('Import of rooms completed successfully!');
-        $this->info('Import completed successfully!');
-
     }
 
     protected function importReserves()
@@ -119,36 +109,26 @@ class ImportXml extends Command
         $xml = simplexml_load_file($filePath);
         Log::info('Importing reserves from: ' . $filePath);
 
-        foreach ($xml->Reserve as $reserve) {
-            // Processamento dos dados da reserva
-            $reserveData = [
-                'id' => (integer) $reserve['id'],
-                'hotelCode' => (integer) $reserve['hotelCode'],
-                'roomCode' => (integer) $reserve['roomCode'],
-                'checkIn' => (string) $reserve->CheckIn,
-                'checkOut' => (string) $reserve->CheckOut,
-                'total' => (float) $reserve->Total,
-            ];
-
-            // Exibir dados da reserva no terminal
-            $this->line('Reserve Data: ' . print_r($reserveData, true));
+        try{
+            foreach ($xml->Reserve as $reserve) {
+                Reserve::updateOrCreate(
+                    ['id' => (integer) $reserve['id']],
+                    [
+                        'hotel_id' => (integer) $reserve['hotelCode'],
+                        'room_id' => (integer) $reserve['roomCode'],
+                        'check_in' => (string) $reserve->CheckIn,
+                        'check_out' => (string) $reserve->CheckOut,
+                        'total' => (float) $reserve->Total,
+                    ]
+                );
+            }
+            Log::info('\nImport of reserves completed successfully!');
+            $this->info('\nImport completed successfully!\n');
+        } catch (\Exception $e) {
+            Log::error('Erro ao importar reservas: ' . $e->getMessage());
         }
 
-        // foreach ($xml->Reserve as $reserve) {
-        //     Reserve::updateOrCreate(
-        //         ['id' => (integer) $reserve['id']],
-        //         [
-        //             'hotelCode' => (integer) $reserve['hotelCode'],
-        //             'roomCode' => (integer) $reserve['roomCode'],
-        //             'checkIn' => (string) $reserve->CheckIn,
-        //             'checkOut' => (string) $reserve->CheckOut,
-        //             'total' => (float) $reserve->Total,
-        //         ]
-        //     );
-        // }
 
-        // Log::info('Import of reserves completed successfully!');
-        // $this->info('Import completed successfully!');
 
     }
 

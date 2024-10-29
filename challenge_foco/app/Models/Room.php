@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -9,18 +10,24 @@ class Room extends Model
 {
     protected $fillable = [
         'id',
-        'hotelCode',
+        'hotel_id',
         'name',
     ];
 
 
-    public function getHotelCodeAttribute()// Acessor
+    protected function hotelCode(): Attribute
     {
-        return $this->attributes['hotel_id'];
+        return Attribute::make(
+            get: fn ($value) => $this->attributes['hotel_id'],
+            set: fn ($value) => $this->attributes['hotel_id'] = $value
+        );
+    }
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $this->attributes['name'],
+            set: fn ($value) => $this->attributes['name'] = $value
+        );
     }
 
-    public function setHotelCodeAttribute($value) // Mutador
-    {
-        $this->attributes['hotel_id'] = $value;
-    }
 }
