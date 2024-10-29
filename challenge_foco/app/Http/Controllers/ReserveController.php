@@ -54,6 +54,18 @@ class ReserveController extends Controller
         }
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/reserves",
+     *     tags={"Reserves"},
+     *     summary="Get a list of reserves",
+     *     description="Retrieve all reserves with pagination",
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of reserves"
+     *     )
+     * )
+     */
     public function reserves()
     {
         try{
@@ -155,7 +167,7 @@ class ReserveController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/create-reserve",
+     *     path="/api/create-reserve",
      *     tags={"Reserves"},
      *     summary="Create a new reserve",
      *     description="Create a reserve record",
@@ -245,6 +257,49 @@ class ReserveController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/update-reserve",
+     *     tags={"Reserves"},
+     *     summary="Update a reserve",
+     *     description="Update a reserve record",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"id"},
+     *             @OA\Property(property="id", type="integer", description="ID of the reserve to update"),
+     *             @OA\Property(property="hotel_id", type="integer", description="ID of associated hotel"),
+     *             @OA\Property(property="room_id", type="integer", description="ID of associated room"),
+     *             @OA\Property(property="check_in", type="string", format="date", description="Check-in date in YYYY-MM-DD format"),
+     *             @OA\Property(property="check_out", type="string", format="date", description="Check-out date in YYYY-MM-DD format"),
+     *             @OA\Property(property="total", type="number", format="float", description="Total cost of the reservation")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Reserve updated",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Reserve updated successfully"),
+     *             @OA\Property(property="data", ref="#/components/schemas/Reserve")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="error"),
+     *             @OA\Property(property="error", type="string", example="Bad request")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal server error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Server error message")
+     *         )
+     *     )
+     * )
+     */
     public function updateReserve(Request $request)
     {
         try {

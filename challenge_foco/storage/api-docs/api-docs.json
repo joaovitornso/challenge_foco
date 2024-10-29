@@ -290,14 +290,14 @@
                 }
             }
         },
-        "/api/delete-hotel": {
+        "/api/delete-reserve": {
             "delete": {
                 "tags": [
-                    "Hotels"
+                    "Reserves"
                 ],
-                "summary": "Delete a hotel",
-                "description": "Delete a hotel record",
-                "operationId": "d96675df22b3b9e25c26a741f15a5a78",
+                "summary": "Delete a reserve",
+                "description": "Delete a reserve record",
+                "operationId": "3520829fda49b863045c9d99c1b55211",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -308,6 +308,7 @@
                                 ],
                                 "properties": {
                                     "id": {
+                                        "description": "ID of the reserve to delete",
                                         "type": "integer",
                                         "example": 1
                                     }
@@ -319,7 +320,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Hotel Deleted",
+                        "description": "Reserve Deleted",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -330,7 +331,7 @@
                                         },
                                         "message": {
                                             "type": "string",
-                                            "example": "success"
+                                            "example": "Reserve deleted successfully"
                                         }
                                     },
                                     "type": "object"
@@ -346,7 +347,7 @@
                                     "properties": {
                                         "error": {
                                             "type": "string",
-                                            "example": "Hotel ID not found"
+                                            "example": "Reserve ID not found"
                                         }
                                     },
                                     "type": "object"
@@ -384,6 +385,21 @@
                 "responses": {
                     "200": {
                         "description": "API is running"
+                    }
+                }
+            }
+        },
+        "/api/reserves": {
+            "get": {
+                "tags": [
+                    "Reserves"
+                ],
+                "summary": "Get a list of reserves",
+                "description": "Retrieve all reserves with pagination",
+                "operationId": "3e1ae39c80d510386b9a3b80d8167dfd",
+                "responses": {
+                    "200": {
+                        "description": "List of reserves"
                     }
                 }
             }
@@ -436,14 +452,14 @@
                 }
             }
         },
-        "/create-reserve": {
+        "/api/create-reserve": {
             "post": {
                 "tags": [
                     "Reserves"
                 ],
                 "summary": "Create a new reserve",
                 "description": "Create a reserve record",
-                "operationId": "39a1cdb58a005432252e5256f63c4052",
+                "operationId": "72598ff6898098161f04bb65ef185faa",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -496,6 +512,115 @@
                                         "message": {
                                             "type": "string",
                                             "example": "Reserve created successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Reserve"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Bad request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Server error message"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/update-reserve": {
+            "post": {
+                "tags": [
+                    "Reserves"
+                ],
+                "summary": "Update a reserve",
+                "description": "Update a reserve record",
+                "operationId": "3bec54740b28a475de608c45de47bc3b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "ID of the reserve to update",
+                                        "type": "integer"
+                                    },
+                                    "hotel_id": {
+                                        "description": "ID of associated hotel",
+                                        "type": "integer"
+                                    },
+                                    "room_id": {
+                                        "description": "ID of associated room",
+                                        "type": "integer"
+                                    },
+                                    "check_in": {
+                                        "description": "Check-in date in YYYY-MM-DD format",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "check_out": {
+                                        "description": "Check-out date in YYYY-MM-DD format",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "total": {
+                                        "description": "Total cost of the reservation",
+                                        "type": "number",
+                                        "format": "float"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Reserve updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Reserve updated successfully"
                                         },
                                         "data": {
                                             "$ref": "#/components/schemas/Reserve"

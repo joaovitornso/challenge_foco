@@ -357,30 +357,30 @@ class HotelController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/delete-hotel",
-     *     tags={"Hotels"},
-     *     summary="Delete a hotel",
-     *     description="Delete a hotel record",
+     *     path="/api/delete-reserve",
+     *     tags={"Reserves"},
+     *     summary="Delete a reserve",
+     *     description="Delete a reserve record",
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
      *             required={"id"},
-     *             @OA\Property(property="id", type="integer", example=1)
+     *             @OA\Property(property="id", type="integer", example=1, description="ID of the reserve to delete")
      *         )
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Hotel Deleted",
+     *         description="Reserve Deleted",
      *         @OA\JsonContent(
      *             @OA\Property(property="status", type="string", example="OK"),
-     *             @OA\Property(property="message", type="string", example="success")
+     *             @OA\Property(property="message", type="string", example="Reserve deleted successfully")
      *         )
      *     ),
      *     @OA\Response(
      *         response=400,
      *         description="Invalid input",
      *         @OA\JsonContent(
-     *             @OA\Property(property="error", type="string", example="Hotel ID not found")
+     *             @OA\Property(property="error", type="string", example="Reserve ID not found")
      *         )
      *     ),
      *     @OA\Response(
@@ -391,7 +391,7 @@ class HotelController extends Controller
      *         )
      *     )
      * )
-    */
+     */
     public function deleteHotel(Request $request)
     {
         try {

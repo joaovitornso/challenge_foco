@@ -7,6 +7,7 @@ use App\Models\Guest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Console\Command;
 use App\Models\Hotel;
+use App\Models\Payment;
 use App\Models\Room;
 use App\Models\Reserve;
 use SimpleXMLElement;
@@ -131,6 +132,23 @@ class ImportXml extends Command
                         'last_name' => (string)$guestXml->LastName,
                         'phone' => (string)$guestXml->Phone,
                     ]);
+                }
+                if (isset($reserve->Payments) && isset($reserve->Payments->Payment)) {
+                    foreach ($reserve->Payments->Payment as $paymentXml) {
+                        $methodId = (int)$paymentXml->Method;
+
+                        if ($methodId) { // Verifique se method_id não é nulo
+                            Payment::create([
+                                'reserve_id' => $reserve['id'],
+                                'method_id' => $methodId,
+                                'value' => (float)$paymentXml->Value,
+                            ]);
+                        } else {
+                            Log::warning('Method ID is missing for reserve ID: ' . $reserve['id']);
+                        }
+                    }
+                } else {
+                    Log::warning('No payments found for reserve ID: ' . $reserve['id']);
                 }
 
                 if (isset($reserve->Dailies)) {
