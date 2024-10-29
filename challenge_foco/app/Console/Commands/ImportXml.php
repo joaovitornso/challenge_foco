@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Daily;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Console\Command;
 use App\Models\Hotel;
@@ -111,7 +112,7 @@ class ImportXml extends Command
 
         try{
             foreach ($xml->Reserve as $reserve) {
-                Reserve::updateOrCreate(
+               $reserveObj = Reserve::updateOrCreate(
                     ['id' => (integer) $reserve['id']],
                     [
                         'hotel_id' => (integer) $reserve['hotelCode'],
@@ -121,7 +122,18 @@ class ImportXml extends Command
                         'total' => (float) $reserve->Total,
                     ]
                 );
+                if (isset($reserve->Dailies)) {
+                    foreach ($reserve->Dailies->Daily as $dailyXml) {
+                        Daily::create([
+                            'reserve_id' => $reserveObj->id,
+                            'date' => (string)$dailyXml->Date,
+                            'value' => (float)$dailyXml->Value,
+                        ]);
+                    }
+                }
             }
+
+
             Log::info('\nImport of reserves completed successfully!');
             $this->info('\nImport completed successfully!\n');
         } catch (\Exception $e) {
