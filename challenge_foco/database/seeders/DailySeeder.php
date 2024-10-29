@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\CouponCode;
+use App\Models\Daily;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CouponCodeSeeder extends Seeder
+class DailySeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        CouponCode::factory()->count(20)->create();
+        Daily::factory()->count(50)->create();
     }
 }

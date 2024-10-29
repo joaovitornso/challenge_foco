@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Reserve extends Model
 {
+
+    use HasFactory;
+    
     protected $fillable = [
         'id',
         'hotel_id',
