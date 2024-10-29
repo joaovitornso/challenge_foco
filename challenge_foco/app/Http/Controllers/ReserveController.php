@@ -245,6 +245,46 @@ class ReserveController extends Controller
         }
     }
 
+    public function updateReserve(Request $request)
+    {
+        try {
+            $reserve = Reserve::find($request->id);
+
+            if (!$reserve) {
+                return response()->json(
+                    [
+                        'status' => "error",
+                        'message' => "Reserve not found",
+                    ],
+                    400
+                );
+            }
+
+            $reserve->hotel_id = $request->hotel_id ?? $reserve->hotel_id;
+            $reserve->room_id = $request->room_id ?? $reserve->room_id;
+            $reserve->check_in = $request->check_in ?? $reserve->check_in;
+            $reserve->check_out = $request->check_out ?? $reserve->check_out;
+            $reserve->total = $request->total ?? $reserve->total;
+            $reserve->save();
+
+            return response()->json(
+                [
+                    'status' => "OK",
+                    'message' => "Reserve updated successfully",
+                    'data' => $reserve
+                ],
+                200
+            );
+        } catch (\Exception $error) {
+            return response()->json(
+                [
+                    'error' => $error->getMessage(),
+                    'message' => "Error updating reserve information"
+                ],
+                500
+            );
+        }
+    }
 
     public function deleteReserve(Request $request)
     {
