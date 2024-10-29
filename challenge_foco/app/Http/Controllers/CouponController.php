@@ -123,4 +123,42 @@ class CouponController extends Controller
             );
         }
     }
+
+    public function deleteCoupon(Request $request)
+    {
+        try {
+            $coupon = CouponCode::find($request->id);
+
+            if(!$coupon){
+                return response()->json(
+                    [
+                        'status' => 'error',
+                        'message' => 'Coupon not found'
+                    ],
+                    400
+                );
+            }
+
+            $coupon->delete();
+            return response()->json(
+                [
+                    'status' => 'OK',
+                    'message' => 'Coupon deleted successfully'
+                ],
+                200
+            );
+
+        } catch(\Exception $error){
+            return response()->json(
+                [
+                    'error' => $error->getMessage(),
+                    'message' => "Error deleting coupon"
+
+                ],
+                500
+            );
+        }
+    }
+
+
 }
