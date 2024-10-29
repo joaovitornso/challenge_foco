@@ -32,6 +32,8 @@ Route::get('/reserve/status',[ReserveController::class, 'status']);
 Route::post('/reserves',[ReserveController::class, 'reserves']);
 Route::post('/reserve',[ReserveController::class, 'reserve']);
 Route::post('/create-reserve',[ReserveController::class, 'createReserve']);
+Route::delete('/delete-reserve/{id}',[ReserveController::class, 'deleteReserve']);
+
 
 Route::get('/discounts',[DiscountController::class, 'discounts']);
 Route::post('/discount',[DiscountController::class, 'discount']);

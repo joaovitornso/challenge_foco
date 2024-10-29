@@ -246,4 +246,42 @@ class ReserveController extends Controller
     }
 
 
+    public function deleteReserve(Request $request)
+    {
+        try {
+            $reserve = Reserve::find($request->id);
+
+
+            if(!$reserve){
+                return response()->json(
+                    [
+                        'status' => 'error',
+                        'message' => 'Reserve not found'
+                    ],
+                    400
+                );
+            }
+
+            $reserve->delete();
+            return response()->json(
+                [
+                    'status' => 'OK',
+                    'message' => 'Reserve deleted successfully'
+                ],
+                200
+            );
+
+        } catch(\Exception $error){
+            return response()->json(
+                [
+                    'error' => $error->getMessage(),
+                    'message' => "Error deleting reserve"
+
+                ],
+                500
+            );
+        }
+    }
+
+
 }
