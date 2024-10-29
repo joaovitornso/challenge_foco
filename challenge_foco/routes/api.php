@@ -34,10 +34,13 @@ Route::post('/create-reserve',[ReserveController::class, 'createReserve']);
 
 Route::get('/discounts',[DiscountController::class, 'discounts']);
 Route::post('/discount',[DiscountController::class, 'discount']);
+Route::post('/create-discount',[DiscountController::class, 'createDiscount']);
+Route::put('/update-discount',[DiscountController::class, 'updateDiscount']);
 Route::delete('/delete-discount/{id}',[DiscountController::class, 'deleteDiscount']);
 
 Route::get('/coupons',[CouponController::class, 'coupons']);
 Route::post('/coupon',[CouponController::class, 'coupon']);
 Route::post('/create-coupon',[CouponController::class, 'createCoupon']);
+Route::put('/update-coupon',[CouponController::class, 'updateCoupon']);
 Route::delete('/delete-coupon/{id}',[CouponController::class, 'deleteCoupon']);
 
