@@ -1,0 +1,393 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "challenge_foco_api",
+    "collectionId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+    "dateExported": "2024-10-29T22:08:54.632Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "6dbeb9ff-b957-4ad0-87e8-de7dac164aea",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[01] Reserve Status ",
+            "url": "http://localhost:8080/api/reserve/status",
+            "method": "GET",
+            "sortNum": 2500,
+            "created": "2024-10-27T17:09:25.675Z",
+            "modified": "2024-10-27T17:10:45.508Z",
+            "headers": []
+        },
+        {
+            "_id": "4b0fee5c-a904-4a7f-bd84-c6d21694ec7f",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[01] Status",
+            "url": "http://localhost:8080/api/status",
+            "method": "GET",
+            "sortNum": 5000,
+            "created": "2024-10-27T00:00:18.871Z",
+            "modified": "2024-10-27T00:00:39.361Z",
+            "headers": []
+        },
+        {
+            "_id": "82d3904c-8f3d-4f0f-a1e3-b185fed940c6",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[02] Hotels",
+            "url": "http://localhost:8080/api/hotels",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-10-26T23:30:31.592Z",
+            "modified": "2024-10-28T10:01:35.797Z",
+            "headers": []
+        },
+        {
+            "_id": "a2381f4a-1501-41e4-8e8b-13ef4c82deb6",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[02] Rooms",
+            "url": "http://localhost:8080/api/rooms",
+            "method": "GET",
+            "sortNum": 15000,
+            "created": "2024-10-28T10:54:42.380Z",
+            "modified": "2024-10-29T12:03:13.934Z",
+            "headers": []
+        },
+        {
+            "_id": "1724a745-e2ea-4be5-992a-b991714fabaf",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[02] Reserves",
+            "url": "http://localhost:8080/api/reserves",
+            "method": "GET",
+            "sortNum": 17500,
+            "created": "2024-10-29T12:02:12.358Z",
+            "modified": "2024-10-29T17:54:59.057Z",
+            "headers": []
+        },
+        {
+            "_id": "b9e29987-7dfb-4436-9390-c54dd0e0a2de",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[02] Discounts",
+            "url": "http://localhost:8080/api/discounts",
+            "method": "GET",
+            "sortNum": 18750,
+            "created": "2024-10-29T12:12:19.501Z",
+            "modified": "2024-10-29T12:12:57.944Z",
+            "headers": []
+        },
+        {
+            "_id": "6c706eb0-beab-4cfd-b1b8-55b49d46115e",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[02] Coupons",
+            "url": "http://localhost:8080/api/coupons",
+            "method": "GET",
+            "sortNum": 19375,
+            "created": "2024-10-29T12:17:43.194Z",
+            "modified": "2024-10-29T17:54:12.940Z",
+            "headers": []
+        },
+        {
+            "_id": "57226c41-0067-4539-8e9d-9c89e98a6dec",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[03] Hotel By ID",
+            "url": "http://localhost:8080/api/hotel-by-id/15",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-10-27T00:22:55.910Z",
+            "modified": "2024-10-28T12:39:35.888Z",
+            "headers": []
+        },
+        {
+            "_id": "28b6c902-52ac-4f7c-bc96-842a0c7012e5",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[03] Room By ID ",
+            "url": "http://localhost:8080/api/room-by-id/17",
+            "method": "GET",
+            "sortNum": 25000,
+            "created": "2024-10-28T12:31:43.295Z",
+            "modified": "2024-10-28T12:40:11.867Z",
+            "headers": []
+        },
+        {
+            "_id": "b89704c2-a117-4046-a5ae-1c62b6e2a2e0",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[04] Hotel By ID",
+            "url": "http://localhost:8080/api/hotel",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-10-27T00:35:04.659Z",
+            "modified": "2024-10-28T12:26:10.638Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":57\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "11a1db7d-624c-4077-b99c-8f0894f1b12d",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[04] Reserve By ID",
+            "url": "http://localhost:8080/api/reserve",
+            "method": "POST",
+            "sortNum": 35000,
+            "created": "2024-10-28T19:40:38.415Z",
+            "modified": "2024-10-29T12:05:48.653Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":44\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "09719162-e3e8-4dea-ba5c-ab5a9dbacc55",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[04] Coupon By ID ",
+            "url": "http://localhost:8080/api/discount",
+            "method": "POST",
+            "sortNum": 37500,
+            "created": "2024-10-29T12:17:59.436Z",
+            "modified": "2024-10-29T12:17:59.436Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":1\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "53d47cef-6d82-4f5a-8bee-7052e17d2ac9",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[05] Create Hotel",
+            "url": "http://localhost:8080/api/create-hotel",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-10-27T00:52:09.492Z",
+            "modified": "2024-10-28T12:48:08.123Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Foco Hotel Palace\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "f44ac17a-34a8-40c4-8344-355235109aaa",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[04] Discount By ID ",
+            "url": "http://localhost:8080/api/discount",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-10-29T12:13:18.798Z",
+            "modified": "2024-10-29T12:13:48.033Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":1\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "1062e44d-fa28-4072-9e90-fe5a23d6a8e9",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[05] Create Reserve",
+            "url": "http://localhost:8080/api/create-reserve",
+            "method": "POST",
+            "sortNum": 45000,
+            "created": "2024-10-28T12:44:21.890Z",
+            "modified": "2024-10-29T17:58:10.126Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hotel_id\": 97,\n  \"room_id\": 55,\n  \"check_in\": \"2024-11-28\",\n  \"check_out\": \"2024-11-30\",\n  \"total\": 224.90 \n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "2eaac324-a7c5-450e-b42b-e4c7cf023c12",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[05] Create Room",
+            "url": "http://localhost:8080/api/create-room",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-10-28T12:42:17.962Z",
+            "modified": "2024-10-28T12:46:24.800Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hotel_id\": 42,\n  \"name\": \"Suite Mater Foco Paradise\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "d61e1ec7-87c4-498b-9b03-ed011c9b75a7",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[05] Create Coupon",
+            "url": "http://localhost:8080/api/create-coupon",
+            "method": "POST",
+            "sortNum": 51250,
+            "created": "2024-10-29T12:14:09.480Z",
+            "modified": "2024-10-29T12:14:38.081Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"code\": \"PROMO2024\",\n    \"discount_type\": \"percent\",\n    \"value\": 10.00,\n    \"description\": \"10% off on all bookings\",\n    \"start_date\": \"2024-10-01\",\n    \"end_date\": \"2024-12-31\",\n    \"max_uses\": 100\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "aa29f336-c1a3-406a-90eb-a89d41fde61a",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[05] Create Discount",
+            "url": "http://localhost:8080/api/create-discount",
+            "method": "POST",
+            "sortNum": 51875,
+            "created": "2024-10-29T12:16:08.378Z",
+            "modified": "2024-10-29T12:16:26.845Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"reserve_id\": 1,\n    \"coupon_id\": 1,\n    \"discount_type\": \"percent\",\n    \"value\": 10.00,\n    \"description\": \"10% discount applied using coupon PROMO2024\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "16aa9e83-42b2-41a5-a2d4-090ac56f15d6",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[06] Update Hotel",
+            "url": "http://localhost:8080/api/update-hotel",
+            "method": "PUT",
+            "sortNum": 52500,
+            "created": "2024-10-27T04:07:23.678Z",
+            "modified": "2024-10-28T12:51:24.664Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 5,\n  \"name\": \"Hotel Paradise Guanambi\" \n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "17ac60ef-7770-4bfd-9a18-34fb7a76744a",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[06] Update Room",
+            "url": "http://localhost:8080/api/update-room",
+            "method": "PUT",
+            "sortNum": 55000,
+            "created": "2024-10-28T12:34:43.809Z",
+            "modified": "2024-10-28T13:03:41.916Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 51,\n  \"name\": \"Suite Foco Paradise\" \n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "2f349595-c104-4cef-9145-39781e1c2fac",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[06] Update Reserve",
+            "url": "http://localhost:8080/api/update-reserve",
+            "method": "PUT",
+            "sortNum": 57500,
+            "created": "2024-10-29T12:08:37.841Z",
+            "modified": "2024-10-29T12:09:36.288Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"id\": 15,\n    \"hotel_id\": 1,\n    \"room_id\": 2,\n    \"check_in\": \"2024-11-15\",\n    \"check_out\": \"2024-11-20\",\n    \"total\": 550.00\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "d715cec7-162c-4825-a371-f1804244b754",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[06] Update Coupon",
+            "url": "http://localhost:8080/api/update-coupon",
+            "method": "PUT",
+            "sortNum": 58750,
+            "created": "2024-10-29T12:15:13.576Z",
+            "modified": "2024-10-29T12:15:38.308Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"id\": 1,\n    \"code\": \"NEWPROMO2024\",\n    \"discount_type\": \"fixed\",\n    \"value\": 20.00,\n    \"description\": \"Flat $20 off on all bookings\",\n    \"start_date\": \"2024-10-15\",\n    \"end_date\": \"2024-12-31\",\n    \"max_uses\": 150\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "5721dde3-9f6f-44cf-bd69-fd2e9d93b212",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[06] Update Discount",
+            "url": "http://localhost:8080/api/update-discount",
+            "method": "PUT",
+            "sortNum": 59375,
+            "created": "2024-10-29T12:16:53.109Z",
+            "modified": "2024-10-29T12:17:22.627Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"id\": 1,\n    \"reserve_id\": 1,\n    \"coupon_id\": 1,\n    \"discount_type\": \"fixed\",\n    \"value\": 15.00,\n    \"description\": \"Flat $15 discount applied using coupon NEWPROMO2024\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "bde41d73-a887-4409-939b-ea4da646cb79",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[07] Delete Hotel",
+            "url": "http://localhost:8080/api/delete-hotel/26",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-10-27T04:30:31.577Z",
+            "modified": "2024-10-29T12:11:13.373Z",
+            "headers": []
+        },
+        {
+            "_id": "a010a45c-63c1-4b49-b9f5-e4f8fe50174d",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[07] Delete Room",
+            "url": "http://localhost:8080/api/delete-room/17",
+            "method": "DELETE",
+            "sortNum": 70000,
+            "created": "2024-10-28T12:34:27.988Z",
+            "modified": "2024-10-29T12:11:32.839Z",
+            "headers": []
+        },
+        {
+            "_id": "ae86def9-388b-46b4-ac67-960d9e0b883c",
+            "colId": "961b5f9a-6ea3-4950-b4d0-a71cb6c9bd76",
+            "containerId": "",
+            "name": "[07] Delete Reserve",
+            "url": "http://localhost:8080/api/delete-reserve/87",
+            "method": "DELETE",
+            "sortNum": 80000,
+            "created": "2024-10-29T12:09:50.738Z",
+            "modified": "2024-10-29T18:09:28.279Z",
+            "headers": []
+        }
+    ],
+    "ref": "A9mUhNiFJhOpbVjOGdNP2kQTcMS7QJFy1T32rFEowxgLBYQw0BQrlTVSTo_YPtmt1Aow5NEEpTRDVXYBVB31vg"
+}

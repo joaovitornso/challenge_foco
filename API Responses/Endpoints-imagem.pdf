@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>L5 Swagger UI</title>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/docs/asset/swagger-ui.css?v=fd5df98cfc0e58ed507042cd86a1f1df">
+    <link rel="icon" type="image/png" href="http://localhost:8080/docs/asset/favicon-32x32.png?v=40d4f2c38d1cd854ad463f16373cbcb6" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="http://localhost:8080/docs/asset/favicon-16x16.png?v=f0ae831196d55d8f4115b6c5e8ec5384" sizes="16x16"/>
+    <style>
+    html
+    {
+        box-sizing: border-box;
+        overflow: -moz-scrollbars-vertical;
+        overflow-y: scroll;
+    }
+    *,
+    *:before,
+    *:after
+    {
+        box-sizing: inherit;
+    }
+
+    body {
+      margin:0;
+      background: #fafafa;
+    }
+    </style>
+    </head>
+
+<body >
+<div id="swagger-ui"></div>
+
+<script src="http://localhost:8080/docs/asset/swagger-ui-bundle.js?v=bccc97f77bdb8edc590ae3abdf83b9a7"></script>
+<script src="http://localhost:8080/docs/asset/swagger-ui-standalone-preset.js?v=861c3618a16aefc88e19a052836718e5"></script>
+<script>
+    window.onload = function() {
+        // Build a system
+        const ui = SwaggerUIBundle({
+            dom_id: '#swagger-ui',
+            url: "http://localhost:8080/docs/api-docs.json",
+            operationsSorter: null,
+            configUrl: null,
+            validatorUrl: null,
+            oauth2RedirectUrl: "http://localhost:8080/api/oauth2-callback",
+
+            requestInterceptor: function(request) {
+                request.headers['X-CSRF-TOKEN'] = '';
+                return request;
+            },
+
+            presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIStandalonePreset
+            ],
+
+            plugins: [
+                SwaggerUIBundle.plugins.DownloadUrl
+            ],
+
+            layout: "StandaloneLayout",
+            docExpansion : "none",
+            deepLinking: true,
+            filter: true,
+            persistAuthorization: "false",
+
+        })
+
+        window.ui = ui
+
+            }
+</script>
+</body>
+</html>
