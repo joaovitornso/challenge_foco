@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\CouponController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\RoomController;
+use App\Models\CouponCode;
+use App\Models\Discount;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/status',[HotelController::class, 'status']);
@@ -27,4 +31,13 @@ Route::delete('/delete-room/{id}',[RoomController::class, 'deleteRoom']);
 Route::get('/reserve/status',[ReserveController::class, 'status']);
 Route::post('/reserve',[ReserveController::class, 'reserve']);
 Route::post('/create-reserve',[ReserveController::class, 'createReserve']);
+
+Route::get('/discounts',[DiscountController::class, 'discounts']);
+Route::post('/discount',[DiscountController::class, 'discount']);
+Route::delete('/delete-discount/{id}',[DiscountController::class, 'deleteDiscount']);
+
+Route::get('/coupons',[CouponController::class, 'coupons']);
+Route::post('/coupon',[CouponController::class, 'coupon']);
+Route::post('/create-coupon',[CouponController::class, 'createCoupon']);
+Route::delete('/delete-coupon/{id}',[CouponController::class, 'deleteCoupon']);
 
